@@ -41,14 +41,14 @@ const RegisterScreen = () => {
             // console.log(user);
 
             // Encrypt user data before storing it
-            const encryptedUserData = await digestStringAsync(
-                CryptoDigestAlgorithm.SHA256,
-                JSON.stringify(user));
+            // const encryptedUserData = await digestStringAsync(
+            //     CryptoDigestAlgorithm.SHA256,
+            //     JSON.stringify(user));
 
-            console.log('Encrypted user data:', encryptedUserData);
+            // console.log('Encrypted user data:', encryptedUserData);
 
             // Save encrypted user data to local storage
-            await AsyncStorage.setItem('user', encryptedUserData);
+            await AsyncStorage.setItem('user', JSON.stringify(user));
             console.log('User registered successfully');
             Alert.alert('User registered successfully');
             // making the fields empty after registeration!
