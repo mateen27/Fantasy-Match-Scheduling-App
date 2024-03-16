@@ -10,15 +10,16 @@ import FixedMatches from '../screens/FixedMatches';
 import EditMatches from '../screens/EditMatches';
 import RegisterScreen from '../screens/Authentication/Register';
 import LoginScreen from '../screens/Authentication/Login';
+import BookSlots from '../screens/BookSlots';
 
 // bottom navigation part
 const Tab = createBottomTabNavigator();
 function HomeTabs() {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="Home" component={Home} options={{headerShown : true}}/>
+            <Tab.Screen name="Home" component={Home} options={{headerShown : true}} />
             <Tab.Screen name="Matches" component={Matches} options={{ headerShown : true }}/>
-            <Tab.Screen name="Profile" component={Profile} />
+            <Tab.Screen name="Profile" component={Profile} options={{ headerShown : true }}/>
         </Tab.Navigator>
     );
 }
@@ -34,6 +35,7 @@ function AppNavigator() {
                 <Stack.Screen name="HomeTabs" component={HomeTabs} />
                 <Stack.Screen name="FixedMatches" component={FixedMatches} />
                 <Stack.Screen name="EditMatches" component={EditMatches} />
+                <Stack.Screen name="BookSlots" component={BookSlots} />
             </Stack.Navigator>
         </NavigationContainer>
     );

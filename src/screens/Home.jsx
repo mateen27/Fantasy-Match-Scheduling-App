@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
+import { Pressable, ScrollView } from 'react-native';
 import {
   NativeBaseProvider,
   VStack,
@@ -10,14 +10,14 @@ import {
   Center,
   Button,
 } from 'native-base';
-import { dummyData } from '../data/dummyData'; // Importing dummy data
+import { dummyData } from '../data/dummyData';
+import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
-  // Get today's date in YYYY-MM-DD format
-  const todayDate = new Date().toISOString().split('T')[0];
 
-  // Filter matches for today's date
+  const todayDate = new Date().toISOString().split('T')[0];
   const todaysMatches = dummyData.filter(match => match.date === todayDate);
+  const upcomingMatches = dummyData.filter(match => match.date !== todayDate).slice(0, 3);;
 
   return (
     <NativeBaseProvider>
@@ -30,6 +30,17 @@ const Home = () => {
             <MatchCard key={index} match={match} />
           ))}
         </VStack>
+        <VStack my={3} mx={4}>
+          <HStack justifyContent={'space-between'}>
+            <Heading size={'md'}>Upcoming Matches</Heading>
+            <Pressable onPress={() => navigation.navigate('')}><Heading top={1} size={'xs'}>View all Matches</Heading></Pressable>
+          </HStack>
+          <VStack my={3}>
+            {upcomingMatches.map((match, index) => (
+              <MatchCard key={index} match={match} />
+            ))}
+          </VStack>
+        </VStack>
       </ScrollView>
     </NativeBaseProvider>
   );
@@ -37,6 +48,7 @@ const Home = () => {
 
 const MatchCard = ({ match }) => {
   const [timeLeft, setTimeLeft] = useState('');
+  const navigation = useNavigation();
 
   useEffect(() => {
     const updateTimer = setInterval(() => {
@@ -55,27 +67,32 @@ const MatchCard = ({ match }) => {
     return () => clearInterval(updateTimer);
   }, [match]);
 
+  const handlePress = () => {
+    // Navigate to another component and pass the match information as parameter
+    navigation.navigate('BookSlots', match);
+  };
+
   return (
-    <Box
-      bg="gray.300"
-      p={4}
-      rounded="md"
-      mb={3}
-    >
-      <HStack justifyContent="space-between" mb={2}>
-        <Text fontWeight="bold">{match.team1}</Text>
-        <Text fontWeight='semibold'>vs</Text>
-        <Text fontWeight="bold">{match.team2}</Text>
-      </HStack>
-      <Text>Date: {match.date}</Text>
-      <Text>Time: {match.time}</Text>
-      <Text>Venue: {match.venue}</Text>
-      <Text>City: {match.city}</Text>
-      <Text>Time Left: {timeLeft}</Text>
-      <Center marginTop={3} position={'absolute'} top={110} right={3} justifyContent={'right'}>
-        <Button>Book Slot</Button>
-      </Center>
-    </Box>
+      <Box
+        bg="gray.300"
+        p={4}
+        rounded="md"
+        mb={3}
+      >
+        <HStack justifyContent="space-between" mb={2}>
+          <Text fontWeight="bold">{match.team1}</Text>
+          <Text fontWeight='semibold'>vs</Text>
+          <Text fontWeight="bold">{match.team2}</Text>
+        </HStack>
+        <Text>Date: {match.date}</Text>
+        <Text>Time: {match.time}</Text>
+        <Text>Venue: {match.venue}</Text>
+        <Text>City: {match.city}</Text>
+        <Text>Time Left: {timeLeft}</Text>
+        <Center marginTop={3} position={'absolute'} top={110} right={3} justifyContent={'right'}>
+          <Button onPress={handlePress}>Book Slot</Button>
+        </Center>
+      </Box>
   );
 };
 
