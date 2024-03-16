@@ -17,7 +17,7 @@ function HomeTabs() {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
             <Tab.Screen name="Home" component={Home} options={{headerShown : true}}/>
-            <Tab.Screen name="Matches" component={Matches} />
+            <Tab.Screen name="Matches" component={Matches} options={{ headerShown : true }}/>
             <Tab.Screen name="Profile" component={Profile} />
         </Tab.Navigator>
     );
