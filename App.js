@@ -10,7 +10,7 @@ export default function App() {
     //   <Box>Hello world</Box>
     //   <Button onPress={() => console.log("hello world")}>Click Me</Button>
     // </NativeBaseProvider>
-    // <AppNavigator/>
-    <RegisterScreen/>
+    <AppNavigator/>
+    // <RegisterScreen/>
   );
 }

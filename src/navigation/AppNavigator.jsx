@@ -8,6 +8,8 @@ import Profile from '../screens/Profile';
 import Matches from '../screens/Matches';
 import FixedMatches from '../screens/FixedMatches';
 import EditMatches from '../screens/EditMatches';
+import RegisterScreen from '../screens/Authentication/Register';
+import LoginScreen from '../screens/Authentication/Login';
 
 // bottom navigation part
 const Tab = createBottomTabNavigator();
@@ -26,7 +28,9 @@ const Stack = createNativeStackNavigator();
 function AppNavigator() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='HomeTab' screenOptions={{ headerShown: false }}>
+            <Stack.Navigator initialRouteName='Login' screenOptions={{ headerShown: false }}>
+                <Stack.Screen name='Login' component={LoginScreen} />
+                <Stack.Screen name='Register' component={RegisterScreen} />
                 <Stack.Screen name="HomeTabs" component={HomeTabs} />
                 <Stack.Screen name="FixedMatches" component={FixedMatches} />
                 <Stack.Screen name="EditMatches" component={EditMatches} />

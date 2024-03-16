@@ -15,6 +15,7 @@ import {
 } from "native-base";
 // icons
 import { AntDesign } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 
 const RegisterScreen = () => {
     // state management
@@ -22,7 +23,9 @@ const RegisterScreen = () => {
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
-    const [rePassword, setRePassword] = React.useState("");
+
+    // navigation
+    const navigation = useNavigation();
     return (
         <NativeBaseProvider>
             <Box bg="#fff" flex={1}>
@@ -144,7 +147,7 @@ const RegisterScreen = () => {
                 <Stack space={2} my={-3} w="75%" maxW="300px" mx="auto">
                     <HStack justifyContent="center">
                         <Text color={"grey"}>Already have an Account?</Text>
-                        <Pressable onPress={() => console.log('heelo')}>
+                        <Pressable onPress={() => navigation.goBack()}>
                             <Text bold color={'#01295f'} ml={2}>Login Now</Text>
                         </Pressable>
                     </HStack>
