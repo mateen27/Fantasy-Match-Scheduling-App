@@ -16,6 +16,11 @@ import {
 // icons
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import uuidRandom from 'uuid-random';
+// for encrypting the user details
+import { generateRandomBytesAsync, digestStringAsync, CryptoDigestAlgorithm } from 'expo-crypto';
+import { Alert } from "react-native";
 
 const RegisterScreen = () => {
     // state management
@@ -26,6 +31,36 @@ const RegisterScreen = () => {
 
     // navigation
     const navigation = useNavigation();
+
+    // for handling the user resgiteration functionality
+    const handleRegister = async () => {
+        try {// Generate unique ID
+            const userId = uuidRandom();
+            // console.log('userId', userId);
+            const user = { id: userId, name, email, password };
+            // console.log(user);
+
+            // Encrypt user data before storing it
+            const encryptedUserData = await digestStringAsync(
+                CryptoDigestAlgorithm.SHA256,
+                JSON.stringify(user));
+
+            console.log('Encrypted user data:', encryptedUserData);
+
+            // Save encrypted user data to local storage
+            await AsyncStorage.setItem('user', encryptedUserData);
+            console.log('User registered successfully');
+            Alert.alert('User registered successfully');
+            // making the fields empty after registeration!
+            setName('');
+            setEmail('');
+            setPassword('');
+        }
+        catch (error) {
+            console.error('Error registering user:', error);
+            Alert.alert('Error registering user');
+        }
+    }
     return (
         <NativeBaseProvider>
             <Box bg="#fff" flex={1}>
@@ -138,7 +173,7 @@ const RegisterScreen = () => {
 
                 {/* Button for login/register */}
                 <Stack space={4} my={6} w="75%" maxW="300px" mx="auto">
-                    <Button borderRadius={10} bg={'blue.400'} size={'md'}>
+                    <Button borderRadius={10} bg={'blue.400'} size={'md'} onPress={handleRegister}>
                         Register
                     </Button>
                 </Stack>

@@ -8,7 +8,6 @@ import {
   Pressable,
   Image,
   Center,
-  Heading,
   Stack,
   Input,
   Icon,
@@ -17,6 +16,7 @@ import {
 // icons
 import { AntDesign } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LoginScreen = () => {
   // state management
