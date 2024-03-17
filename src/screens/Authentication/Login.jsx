@@ -70,9 +70,9 @@ const LoginScreen = () => {
     
                 // Check user type
                 if (userData.userType === 'admin') {
-                    navigation.replace('AdminTabs'); // Navigate to admin screen
+                    navigation.replace('AdminTabs');
                 } else {
-                    navigation.replace('User'); // Navigate to user screen
+                    navigation.replace('UserTabs');
                 }
             } else {
                 console.log('Invalid email or password');

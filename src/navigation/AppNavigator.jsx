@@ -75,7 +75,7 @@ function AppNavigator() {
                 ) : (
                     <>
                         <Stack.Screen name="UserTabs" component={UserTabs} />
-                        {/* <Stack.Screen name="BookSlots" component={BookSlots} /> */}
+                        <Stack.Screen name="BookSlots" component={BookSlots} />
                         <Stack.Screen name="BettingScreen" component={BettingScreen} />
                     </>
                 )}

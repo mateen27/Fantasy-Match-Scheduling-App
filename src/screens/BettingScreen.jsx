@@ -43,23 +43,19 @@ const BettingScreen = ({ route }) => {
             
             const matchId = matchInformation.params.id;
             
-            // Checking if the user has already placed a bet on this match
             if (userData.hasOwnProperty(matchId)) {
-                // If there are already bets for this match ID, add the new bet to the existing array
                 if (Array.isArray(userData[matchId])) {
                     userData[matchId].push({
                         betAmount: onChangeValue,
                         matchInfo: matchInformation
                     });
                 } else {
-                    // If it's the first bet for this match ID, create a new array
                     userData[matchId] = [{
                         betAmount: onChangeValue,
                         matchInfo: matchInformation
                     }];
                 }
             } else {
-                // If there are no bets for this match ID yet, create a new array with the new bet
                 userData[matchId] = [{
                     betAmount: onChangeValue,
                     matchInfo: matchInformation
