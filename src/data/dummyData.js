@@ -7,6 +7,8 @@ export const dummyData = [
     time: "23:45",
     venue: "Wankhede Stadium, Mumbai",
     city: "Mumbai",
+    team1Wins: 5,
+    team2Wins: 7,
   },
   {
     id: "2",
@@ -16,6 +18,8 @@ export const dummyData = [
     time: "16:30",
     venue: "M.Chinnaswamy Stadium, Bangalore",
     city: "Bangalore",
+    team1Wins: 6,
+    team2Wins: 8,
   },
   {
     id: "3",
@@ -25,6 +29,8 @@ export const dummyData = [
     time: "14:00",
     venue: "Eden Gardens, Kolkata",
     city: "Kolkata",
+    team1Wins: 7,
+    team2Wins: 9,
   },
   {
     id: "4",
@@ -34,6 +40,8 @@ export const dummyData = [
     time: "17:30",
     venue: "Rajiv Gandhi International Cricket Stadium, Hyderabad",
     city: "Hyderabad",
+    team1Wins: 8,
+    team2Wins: 10,
   },
   {
     id: "5",
@@ -43,6 +51,8 @@ export const dummyData = [
     time: "13:30",
     venue: "MA Chidambaram Stadium, Chennai",
     city: "Chennai",
+    team1Wins: 9,
+    team2Wins: 11,
   },
   {
     id: "6",
@@ -52,6 +62,8 @@ export const dummyData = [
     time: "16:00",
     venue: "Wankhede Stadium, Mumbai",
     city: "Mumbai",
+    team1Wins: 10,
+    team2Wins: 12,
   },
   {
     id: "7",
@@ -61,6 +73,8 @@ export const dummyData = [
     time: "13:00",
     venue: "Arun Jaitley Stadium, Delhi",
     city: "Delhi",
+    team1Wins: 11,
+    team2Wins: 13,
   },
   {
     id: "8",
@@ -70,6 +84,8 @@ export const dummyData = [
     time: "16:30",
     venue: "Sawai Mansingh Stadium, Jaipur",
     city: "Jaipur",
+    team1Wins: 12,
+    team2Wins: 14,
   },
   {
     id: "9",
@@ -79,6 +95,8 @@ export const dummyData = [
     time: "14:00",
     venue: "M.Chinnaswamy Stadium, Bangalore",
     city: "Bangalore",
+    team1Wins: 13,
+    team2Wins: 15,
   },
   {
     id: "10",
@@ -88,6 +106,8 @@ export const dummyData = [
     time: "17:30",
     venue: "Eden Gardens, Kolkata",
     city: "Kolkata",
+    team1Wins: 14,
+    team2Wins: 16,
   },
   {
     id: "11",
@@ -97,6 +117,8 @@ export const dummyData = [
     time: "13:30",
     venue: "Rajiv Gandhi International Cricket Stadium, Hyderabad",
     city: "Hyderabad",
+    team1Wins: 15,
+    team2Wins: 17,
   },
   {
     id: "12",
@@ -106,6 +128,8 @@ export const dummyData = [
     time: "16:00",
     venue: "Punjab Cricket Association Stadium, Mohali",
     city: "Mohali",
+    team1Wins: 16,
+    team2Wins: 18,
   },
   {
     id: "13",
@@ -115,6 +139,8 @@ export const dummyData = [
     time: "13:00",
     venue: "MA Chidambaram Stadium, Chennai",
     city: "Chennai",
+    team1Wins: 17,
+    team2Wins: 19,
   },
   {
     id: "14",
@@ -124,6 +150,8 @@ export const dummyData = [
     time: "16:30",
     venue: "Wankhede Stadium, Mumbai",
     city: "Mumbai",
+    team1Wins: 18,
+    team2Wins: 20,
   },
   {
     id: "15",
@@ -133,6 +161,8 @@ export const dummyData = [
     time: "14:00",
     venue: "Sawai Mansingh Stadium, Jaipur",
     city: "Jaipur",
+    team1Wins: 19,
+    team2Wins: 21,
   },
   {
     id: "16",
@@ -142,6 +172,8 @@ export const dummyData = [
     time: "17:30",
     venue: "Punjab Cricket Association Stadium, Mohali",
     city: "Mohali",
+    team1Wins: 20,
+    team2Wins: 22,
   },
   {
     id: "17",
@@ -151,6 +183,8 @@ export const dummyData = [
     time: "13:30",
     venue: "Eden Gardens, Kolkata",
     city: "Kolkata",
+    team1Wins: 21,
+    team2Wins: 23,
   },
   {
     id: "18",
@@ -160,6 +194,8 @@ export const dummyData = [
     time: "16:00",
     venue: "M.Chinnaswamy Stadium, Bangalore",
     city: "Bangalore",
+    team1Wins: 22,
+    team2Wins: 24,
   },
   {
     id: "19",
@@ -169,6 +205,8 @@ export const dummyData = [
     time: "13:00",
     venue: "Arun Jaitley Stadium, Delhi",
     city: "Delhi",
+    team1Wins: 23,
+    team2Wins: 25,
   },
   {
     id: "20",
@@ -178,6 +216,8 @@ export const dummyData = [
     time: "16:30",
     venue: "Rajiv Gandhi International Cricket Stadium, Hyderabad",
     city: "Hyderabad",
+    team1Wins: 24,
+    team2Wins: 26,
   },
   {
     id: "21",
@@ -187,6 +227,8 @@ export const dummyData = [
     time: "14:00",
     venue: "Punjab Cricket Association Stadium, Mohali",
     city: "Mohali",
+    team1Wins: 25,
+    team2Wins: 27,
   },
   {
     id: "22",
@@ -196,6 +238,8 @@ export const dummyData = [
     time: "17:30",
     venue: "Wankhede Stadium, Mumbai",
     city: "Mumbai",
+    team1Wins: 26,
+    team2Wins: 28,
   },
   {
     id: "23",
@@ -205,6 +249,8 @@ export const dummyData = [
     time: "13:30",
     venue: "M.Chinnaswamy Stadium, Bangalore",
     city: "Bangalore",
+    team1Wins: 27,
+    team2Wins: 29,
   },
   {
     id: "24",
@@ -214,6 +260,8 @@ export const dummyData = [
     time: "16:00",
     venue: "Arun Jaitley Stadium, Delhi",
     city: "Delhi",
+    team1Wins: 28,
+    team2Wins: 30,
   },
   {
     id: "25",
@@ -223,6 +271,8 @@ export const dummyData = [
     time: "13:00",
     venue: "MA Chidambaram Stadium, Chennai",
     city: "Chennai",
+    team1Wins: 29,
+    team2Wins: 31,
   },
   {
     id: "26",
@@ -232,6 +282,8 @@ export const dummyData = [
     time: "16:30",
     venue: "Eden Gardens, Kolkata",
     city: "Kolkata",
+    team1Wins: 30,
+    team2Wins: 32,
   },
   {
     id: "27",
@@ -241,6 +293,8 @@ export const dummyData = [
     time: "14:00",
     venue: "Sawai Mansingh Stadium, Jaipur",
     city: "Jaipur",
+    team1Wins: 31,
+    team2Wins: 33,
   },
   {
     id: "28",
@@ -250,6 +304,8 @@ export const dummyData = [
     time: "17:30",
     venue: "Wankhede Stadium, Mumbai",
     city: "Mumbai",
+    team1Wins: 32,
+    team2Wins: 34,
   },
   {
     id: "29",
@@ -259,6 +315,8 @@ export const dummyData = [
     time: "13:30",
     venue: "Punjab Cricket Association Stadium, Mohali",
     city: "Mohali",
+    team1Wins: 33,
+    team2Wins: 35,
   },
   {
     id: "30",
@@ -268,5 +326,7 @@ export const dummyData = [
     time: "16:00",
     venue: "Rajiv Gandhi International Cricket Stadium, Hyderabad",
     city: "Hyderabad",
+    team1Wins: 34,
+    team2Wins: 36,
   },
 ];

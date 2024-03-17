@@ -42,9 +42,9 @@ export const bettingContest = [
     {
       id: 6,
       name: 'Contest 6',
-      price: 'On your Interest',
+      price: 10,
       description: 'Select your own Betting Price!',
-      returnAmount: 'as per your amount' ,
+      returnAmount: 350 ,
       slotsLeft: Math.floor(Math.random() * 100) + 1
     },
   ];

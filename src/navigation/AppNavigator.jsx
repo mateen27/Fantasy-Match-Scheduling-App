@@ -11,6 +11,7 @@ import EditMatches from '../screens/EditMatches';
 import RegisterScreen from '../screens/Authentication/Register';
 import LoginScreen from '../screens/Authentication/Login';
 import BookSlots from '../screens/BookSlots';
+import BettingScreen from '../screens/BettingScreen';
 
 // bottom navigation part
 const Tab = createBottomTabNavigator();
@@ -36,6 +37,7 @@ function AppNavigator() {
                 <Stack.Screen name="FixedMatches" component={FixedMatches} />
                 <Stack.Screen name="EditMatches" component={EditMatches} />
                 <Stack.Screen name="BookSlots" component={BookSlots} />
+                <Stack.Screen name = "BettingScreen" component={BettingScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

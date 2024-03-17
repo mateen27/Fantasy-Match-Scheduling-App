@@ -8,6 +8,9 @@ import { bettingContest } from '../data/bettingContestData';
 const BookSlots = ({ route }) => {
     const navigation = useNavigation();
 
+    const matchInformation = route;
+    // console.log('matchInformation', {matchInformation})
+
     // Filter bettingData based on price categories
     const lowPriceContests = bettingContest.filter(contest => contest.price <= 50);
     // console.log(lowPriceContests);
@@ -54,7 +57,7 @@ const BookSlots = ({ route }) => {
                                 <Text>{contest.description}</Text>
                                 <Text fontWeight={'light'} fontStyle={'italic'}>Slots Left: {contest.slotsLeft}</Text>
                             </Box>
-                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('PlaceBet', { contest })}>Bet Now</Button>
+                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('BettingScreen',  { contest, matchInformation } )}>Bet Now</Button>
                         </HStack>
                     ))}
 
@@ -67,7 +70,7 @@ const BookSlots = ({ route }) => {
                                 <Text>{contest.description}</Text>
                                 <Text fontWeight={'light'} fontStyle={'italic'}>Slots Left: {contest.slotsLeft}</Text>
                             </Box>
-                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('PlaceBet', { contest })}>Bet Now</Button>
+                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('BettingScreen',  { contest, matchInformation } )}>Bet Now</Button>
                         </HStack>
                     ))}
 
@@ -80,7 +83,7 @@ const BookSlots = ({ route }) => {
                                 <Text>{contest.description}</Text>
                                 <Text fontWeight={'light'} fontStyle={'italic'}>Slots Left: {contest.slotsLeft}</Text>
                             </Box>
-                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('PlaceBet', { contest })}>Bet Now</Button>
+                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('BettingScreen',  { contest, matchInformation } )}>Bet Now</Button>
                         </HStack>
                     ))}
 
@@ -93,7 +96,7 @@ const BookSlots = ({ route }) => {
                                 <Text>{contest.description}</Text>
                                 <Text fontWeight={'light'} fontStyle={'italic'}>Slots Left: {contest.slotsLeft}</Text>
                             </Box>
-                            <Button bg={'#6167ce'} onPress={() => navigation.navigate('PlaceBet', { contest })}>Bet Now</Button>
+                            <Button bg={'#6167ce'}  onPress={() => navigation.navigate('BettingScreen',  { contest, matchInformation } )}>Bet Now</Button>
                         </HStack>
                     ))}
                 </VStack>
