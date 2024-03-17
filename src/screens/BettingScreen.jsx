@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, Alert } from 'react-native';
-import { NativeBaseProvider, Box, Heading, Text, Center, HStack, Spacer, VStack, Button, Stack, Slider, Input } from 'native-base';
+import { NativeBaseProvider, Box, Heading, Text, Center, HStack, VStack, Button, Stack } from 'native-base';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const BettingScreen = ({ route }) => {
-    // console.log(route.params.contest.price)
-    const [userData, setUserData] = useState(null);
     const { matchInformation } = route.params;
     const [onChangeValue, setOnChangeValue] = useState(0);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
         fetchUserData();
@@ -19,8 +18,8 @@ const BettingScreen = ({ route }) => {
             const encryptedUserData = await AsyncStorage.getItem('user');
             if (encryptedUserData) {
                 const userData = JSON.parse(encryptedUserData);
-                const { password, ...userDataWithoutPassword } = userData;
-                setUserData(userDataWithoutPassword);
+                // console.log('userData' , userData);
+                setUserData(userData);
             } else {
                 console.log('User data not found');
             }
@@ -34,10 +33,39 @@ const BettingScreen = ({ route }) => {
         return team1Wins > team2Wins ? matchInformation.params.team1 : matchInformation.params.team2;
     };
 
-    const handlePlaceBet = () => {
-        // Logic to handle placing the bet
-        // You can implement this according to your application's requirements
-        console.log('Bet placed!');
+    const handlePlaceBet = async () => {
+        try {
+            const encryptedUserData = await AsyncStorage.getItem('user');
+            // console.log(encryptedUserData);
+            let userData = [];
+            if (encryptedUserData) {
+                userData = JSON.parse(encryptedUserData);
+                // const matchInfo2 = userData["2"].matchInfo;
+                // console.log("Match Info for key 2:", matchInfo2);
+            }
+            
+            // Checking if the user has already placed a bet on this match
+            if (userData.hasOwnProperty(matchInformation.params.id)) {
+                Alert.alert('Error', 'You have already placed a bet on this match.');
+                return;
+            }
+
+            // Update user data with the new bet
+            const newBet = {
+                betAmount: onChangeValue,
+                matchInfo: matchInformation
+            };
+            userData[matchInformation.params.id] = newBet;
+
+            // Save updated user data
+            await AsyncStorage.setItem('user', JSON.stringify(userData));
+
+            // Notify the user that the bet has been placed
+            Alert.alert('Success', 'Your bet has been placed successfully!');
+        } catch (error) {
+            console.error('Error placing bet:', error);
+            Alert.alert('Error placing bet:', error);
+        }
     };
 
     return (
@@ -73,26 +101,26 @@ const BettingScreen = ({ route }) => {
                     <Heading size={'md'}>Place your Bet!</Heading>
                 </VStack>
                 <Center flex={1} bg="#f0f2f5">
-      <Stack space={4} alignItems="center" w="75%" maxW="300">
-        <Text textAlign="center" fontSize={'md'}>Bet Amount: {onChangeValue}</Text>
-        {[...Array(route.params.contest.returnAmount / route.params.contest.price).keys()].map((index) => (
-      <Button
-        key={index}
-        width={100}
-        mb={2}
-        variant="outline"
-        colorScheme="cyan"
-        onPress={() => setOnChangeValue((index + 1) * route.params.contest.price)}
-      >
-        <HStack>
-          <Text>$</Text>
-          <Text>{(index + 1) * route.params.contest.price}</Text>
-        </HStack>
-      </Button>
-    ))}
-      </Stack>
-    </Center>
-    <Center mb={10} marginTop={10}>
+                    <Stack space={4} alignItems="center" w="75%" maxW="300">
+                        <Text textAlign="center" fontSize={'md'}>Bet Amount: {onChangeValue}</Text>
+                        {[...Array(route.params.contest.returnAmount / route.params.contest.price).keys()].map((index) => (
+                            <Button
+                                key={index}
+                                width={100}
+                                mb={2}
+                                variant="outline"
+                                colorScheme="cyan"
+                                onPress={() => setOnChangeValue((index + 1) * route.params.contest.price)}
+                            >
+                                <HStack>
+                                    <Text>$</Text>
+                                    <Text>{(index + 1) * route.params.contest.price}</Text>
+                                </HStack>
+                            </Button>
+                        ))}
+                    </Stack>
+                </Center>
+                <Center mb={10} marginTop={10}>
                     <Button w={'90%'} borderRadius={10} size={'md'} colorScheme="blueGray" onPress={handlePlaceBet}>Place Bet</Button>
                 </Center>
             </ScrollView>
