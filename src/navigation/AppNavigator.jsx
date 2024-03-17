@@ -69,11 +69,12 @@ function AppNavigator() {
                     <>
                         <Stack.Screen name="AdminTabs" component={AdminTabs} />
                         <Stack.Screen name="BookSlots" component={BookSlots} />
+                        <Stack.Screen name="AddMatch" component={AddMatch} />
                         <Stack.Screen name="BettingScreen" component={BettingScreen} />
                     </>
                 ) : (
                     <>
-                        <Stack.Screen name="UserTabs" component={UserTabs} />
+                        <Stack.Screen name="User" component={UserTabs} />
                         {/* <Stack.Screen name="BookSlots" component={BookSlots} /> */}
                         <Stack.Screen name="BettingScreen" component={BettingScreen} />
                     </>
