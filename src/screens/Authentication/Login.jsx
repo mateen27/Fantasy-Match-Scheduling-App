@@ -30,46 +30,50 @@ const LoginScreen = () => {
     const navigation = useNavigation();
 
     // function for checking the login status!
-  useEffect(() => {
-    const checkLoginStatus = async () => {
-      try {
-        // accessing the token from async storage!
-        const token = await AsyncStorage.getItem("userToken");
+//   useEffect(() => {
+//     const checkLoginStatus = async () => {
+//       try {
+//         // accessing the token from async storage!
+//         const token = await AsyncStorage.getItem("userToken");
 
-        // if token found
-        if (token) {
-          navigation.replace("HomeTabs");
-        } else {
-          // token not found navigate to the Login Screen itself!
-        }
-      } catch (error) {
-        console.log("error checking the login status", error);
-      }
-    };
+//         // if token found
+//         if (token) {
+//           navigation.replace("Home");
+//         } else {
+//           // token not found navigate to the Login Screen itself!
+//         }
+//       } catch (error) {
+//         console.log("error checking the login status", error);
+//       }
+//     };
 
-    // calling the function
-    checkLoginStatus();
-  }, []);
+//     // calling the function
+//     checkLoginStatus();
+//   }, []);
 
     // function for login functionality
     const handleLogin = async () => {
         try {
             const encryptedUserData = await AsyncStorage.getItem('user');
-
+    
             if (!encryptedUserData) {
                 console.log('User not found');
                 return;
             }
-
+    
             const userData = JSON.parse(encryptedUserData);
-            //   console.log('userData' , userData);
-
-
+    
             if (userData.email === email && userData.password === password) {
                 console.log('Login successful');
                 Alert.alert('Login successful');
                 await AsyncStorage.setItem('userToken', userData.id);
-                navigation.replace('HomeTabs');
+    
+                // Check user type
+                if (userData.userType === 'admin') {
+                    navigation.replace('AdminTabs'); // Navigate to admin screen
+                } else {
+                    navigation.replace('UserTabs'); // Navigate to user screen
+                }
             } else {
                 console.log('Invalid email or password');
                 Alert.alert('Invalid email or password');
@@ -79,6 +83,7 @@ const LoginScreen = () => {
             Alert.alert('Error logging in:', error);
         }
     };
+    
     return (
         <NativeBaseProvider>
             <Box bg="#fff" flex={1}>
