@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Pressable, ScrollView } from 'react-native';
+import React, { useEffect, useState, useLayoutEffect } from 'react'; // Import useLayoutEffect
+import { Pressable, ScrollView, Image } from 'react-native';
 import {
   NativeBaseProvider,
   VStack,
@@ -9,15 +9,20 @@ import {
   Box,
   Center,
   Button,
+  View
 } from 'native-base';
 import { dummyData } from '../data/dummyData';
 import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
-
   const todayDate = new Date().toISOString().split('T')[0];
   const todaysMatches = dummyData.filter(match => match.date === todayDate);
-  const upcomingMatches = dummyData.filter(match => match.date !== todayDate).slice(0, 3);;
+  const upcomingMatches = dummyData.filter(match => {
+    const matchDate = new Date(match.date);
+    const today = new Date();
+    // Check if the match date is greater than or equal to today's date
+    return matchDate >= today;
+  }).slice(0, 3);
 
   return (
     <NativeBaseProvider>
@@ -33,7 +38,7 @@ const Home = () => {
         <VStack my={3} mx={4}>
           <HStack justifyContent={'space-between'}>
             <Heading size={'md'}>Upcoming Matches</Heading>
-            <Pressable onPress={() => navigation.navigate('')}><Heading top={1} size={'xs'}>View all Matches</Heading></Pressable>
+            <Pressable><Heading top={1} size={'xs'}>View all Matches</Heading></Pressable>
           </HStack>
           <VStack my={3}>
             {upcomingMatches.map((match, index) => (
@@ -73,26 +78,26 @@ const MatchCard = ({ match }) => {
   };
 
   return (
-      <Box
-        bg="gray.300"
-        p={4}
-        rounded="md"
-        mb={3}
-      >
-        <HStack justifyContent="space-between" mb={2}>
-          <Text fontWeight="bold">{match.team1}</Text>
-          <Text fontWeight='semibold'>vs</Text>
-          <Text fontWeight="bold">{match.team2}</Text>
-        </HStack>
-        <Text>Date: {match.date}</Text>
-        <Text>Time: {match.time}</Text>
-        <Text>Venue: {match.venue}</Text>
-        <Text>City: {match.city}</Text>
-        <Text>Time Left: {timeLeft}</Text>
-        <Center marginTop={3} position={'absolute'} top={110} right={3} justifyContent={'right'}>
-          <Button onPress={handlePress}>Book Slot</Button>
-        </Center>
-      </Box>
+    <Box
+      bg="#f8f8ff"
+      p={4}
+      rounded="md"
+      mb={3}
+    >
+      <HStack justifyContent="space-between" mb={2}>
+        <Text fontWeight="bold">{match.team1}</Text>
+        <Text fontWeight='semibold'>vs</Text>
+        <Text fontWeight="bold">{match.team2}</Text>
+      </HStack>
+      <Text>Date: {match.date}</Text>
+      <Text>Time: {match.time}</Text>
+      <Text>Venue: {match.venue}</Text>
+      <Text>City: {match.city}</Text>
+      <Text>Time Left: {timeLeft}</Text>
+      <Center marginTop={3} position={'absolute'} top={110} right={3} justifyContent={'right'}>
+        <Button bg={'#6167ce'} onPress={handlePress}>Book Slot</Button>
+      </Center>
+    </Box>
   );
 };
 

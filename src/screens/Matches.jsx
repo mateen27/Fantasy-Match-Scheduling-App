@@ -8,12 +8,12 @@ import {
   Text,
   Box,
 } from 'native-base';
-import { dummyData } from '../data/dummyData'; // Importing dummy data
+import { dummyData } from '../data/dummyData';
 
-const MatchCard = ({ match }) => {
+const MatchCard = ( {match} ) => {
   return (
     <Box
-      bg="gray.300"
+      bg="#f8f8ff"
       p={4}
       rounded="md"
       mb={3}
@@ -32,6 +32,9 @@ const MatchCard = ({ match }) => {
 };
 
 const Matches = () => {
+  const todayDate = new Date().toISOString().split('T')[0];
+  const upcomingMatches = dummyData.filter(match => match.date >= todayDate);
+
   return (
     <NativeBaseProvider>
       <ScrollView style = {{ backgroundColor : 'white' }}>
@@ -39,7 +42,7 @@ const Matches = () => {
           <Heading size={'md'}>Upcoming Matches</Heading>
         </VStack>
         <VStack mx={4}>
-          {dummyData.map((match, index) => (
+          {upcomingMatches.map((match, index) => (
             <MatchCard key={index} match={match} />
           ))}
         </VStack>

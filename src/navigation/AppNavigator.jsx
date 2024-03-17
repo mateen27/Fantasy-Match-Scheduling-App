@@ -17,9 +17,9 @@ const Tab = createBottomTabNavigator();
 function HomeTabs() {
     return (
         <Tab.Navigator screenOptions={{ headerShown: false }}>
-            <Tab.Screen name="Home" component={Home} options={{headerShown : true}} />
-            <Tab.Screen name="Matches" component={Matches} options={{ headerShown : true }}/>
-            <Tab.Screen name="Profile" component={Profile} options={{ headerShown : true }}/>
+            <Tab.Screen name="Home" component={Home} options={{ headerShown: true, headerTintColor: '#fff', headerStyle: { backgroundColor: '#757ad4' } }} />
+            <Tab.Screen name="Matches" component={Matches} options={{ headerShown: true , headerTintColor: '#fff', headerStyle: { backgroundColor: '#757ad4' } }} />
+            <Tab.Screen name="Profile" component={Profile} options={{ headerShown: true , headerTintColor: '#fff', headerStyle: { backgroundColor: '#757ad4' } }} />
         </Tab.Navigator>
     );
 }
