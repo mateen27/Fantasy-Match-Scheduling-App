@@ -36,30 +36,39 @@ const BettingScreen = ({ route }) => {
     const handlePlaceBet = async () => {
         try {
             const encryptedUserData = await AsyncStorage.getItem('user');
-            // console.log(encryptedUserData);
-            let userData = [];
+            let userData = {};
             if (encryptedUserData) {
                 userData = JSON.parse(encryptedUserData);
-                // const matchInfo2 = userData["2"].matchInfo;
-                // console.log("Match Info for key 2:", matchInfo2);
             }
             
+            const matchId = matchInformation.params.id;
+            
             // Checking if the user has already placed a bet on this match
-            if (userData.hasOwnProperty(matchInformation.params.id)) {
-                Alert.alert('Error', 'You have already placed a bet on this match.');
-                return;
+            if (userData.hasOwnProperty(matchId)) {
+                // If there are already bets for this match ID, add the new bet to the existing array
+                if (Array.isArray(userData[matchId])) {
+                    userData[matchId].push({
+                        betAmount: onChangeValue,
+                        matchInfo: matchInformation
+                    });
+                } else {
+                    // If it's the first bet for this match ID, create a new array
+                    userData[matchId] = [{
+                        betAmount: onChangeValue,
+                        matchInfo: matchInformation
+                    }];
+                }
+            } else {
+                // If there are no bets for this match ID yet, create a new array with the new bet
+                userData[matchId] = [{
+                    betAmount: onChangeValue,
+                    matchInfo: matchInformation
+                }];
             }
-
-            // Update user data with the new bet
-            const newBet = {
-                betAmount: onChangeValue,
-                matchInfo: matchInformation
-            };
-            userData[matchInformation.params.id] = newBet;
-
+    
             // Save updated user data
             await AsyncStorage.setItem('user', JSON.stringify(userData));
-
+    
             // Notify the user that the bet has been placed
             Alert.alert('Success', 'Your bet has been placed successfully!');
         } catch (error) {

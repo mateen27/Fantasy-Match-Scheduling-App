@@ -16,13 +16,22 @@ import { useNavigation } from '@react-navigation/native';
 
 const Home = () => {
   const todayDate = new Date().toISOString().split('T')[0];
-  const todaysMatches = dummyData.filter(match => match.date === todayDate);
+  const currentTime = new Date();
+
+  // Filter today's matches and check if match time is in the future
+  const todaysMatches = dummyData.filter(match => {
+    const matchDate = new Date(match.date);
+    const matchTime = new Date(`${match.date}T${match.time}`);
+    
+    // Check if match date is today and match time is in the future
+    return matchDate.toISOString().split('T')[0] === todayDate && matchTime > currentTime;
+  });
+
   const upcomingMatches = dummyData.filter(match => {
     const matchDate = new Date(match.date);
     const today = new Date();
-    // Check if the match date is greater than or equal to today's date
     return matchDate >= today;
-  }).slice(0, 3);
+  }).slice(0, 4);
 
   return (
     <NativeBaseProvider>

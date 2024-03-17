@@ -12,6 +12,7 @@ import {
     Input,
     Icon,
     Button,
+    Select,
 } from "native-base";
 // icons
 import { AntDesign } from "@expo/vector-icons";
@@ -28,35 +29,23 @@ const RegisterScreen = () => {
     const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
+    const [userType, setUserType] = React.useState("user"); // Default value is "user"
 
     // navigation
     const navigation = useNavigation();
 
     // for handling the user resgiteration functionality
     const handleRegister = async () => {
-        try {// Generate unique ID
+        try {
             const userId = uuidRandom();
-            // console.log('userId', userId);
-            const user = { id: userId, name, email, password };
-            // console.log(user);
-
-            // Encrypt user data before storing it
-            // const encryptedUserData = await digestStringAsync(
-            //     CryptoDigestAlgorithm.SHA256,
-            //     JSON.stringify(user));
-
-            // console.log('Encrypted user data:', encryptedUserData);
-
-            // Save encrypted user data to local storage
+            const user = { id: userId, name, email, password, userType };
             await AsyncStorage.setItem('user', JSON.stringify(user));
-            console.log('User registered successfully');
             Alert.alert('User registered successfully');
-            // making the fields empty after registeration!
             setName('');
             setEmail('');
             setPassword('');
-        }
-        catch (error) {
+            setUserType('user'); // Reset user type to default after registration
+        } catch (error) {
             console.error('Error registering user:', error);
             Alert.alert('Error registering user');
         }
@@ -169,6 +158,20 @@ const RegisterScreen = () => {
                         }
                         placeholder="Password"
                     />
+                </Stack>
+
+                {/* User type */}
+                <Stack space={2} my={2} w="75%" maxW="300px" mx="auto">
+                    <Select
+                        selectedValue={userType}
+                        minWidth={200}
+                        accessibilityLabel="Select User Type"
+                        placeholder="Select User Type"
+                        onValueChange={(itemValue) => setUserType(itemValue)}
+                    >
+                        <Select.Item label="Admin" value="admin" />
+                        <Select.Item label="User" value="user" />
+                    </Select>
                 </Stack>
 
                 {/* Button for login/register */}

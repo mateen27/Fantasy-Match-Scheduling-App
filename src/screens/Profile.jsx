@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
-import { NativeBaseProvider, Avatar, Box, Button, Center, HStack, Heading, Text, VStack, Card, Pressable } from 'native-base';
+import { NativeBaseProvider, Avatar, Box, Button, Center, HStack, Heading, Text, VStack, Card, Pressable , ScrollView } from 'native-base';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const Profile = () => {
   const [userData, setUserData] = useState('');
@@ -28,8 +29,33 @@ const Profile = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    try {
+      await AsyncStorage.removeItem('user');
+      await AsyncStorage.removeItem('userToken');
+      // Navigate to the sign-in screen after clearing AsyncStorage
+      navigation.navigate('Login');
+    } catch (error) {
+      console.error('Error signing out:', error);
+      Alert.alert('Error signing out:', error);
+    }
+  };
   return (
     <NativeBaseProvider>
+      {/* <ScrollView style={{ flex: 1, backgroundColor: '#fff' }}>
+                <Box flex={1}>
+                    <LinearGradient
+                        colors={['#4e54c8', '#8f94fb']}
+                        start={[0, 0]}
+                        end={[1, 1]}
+                        style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+                    >
+                        <Heading my={'15%'} color="white" mb={4}>
+                            Match Scheduling
+                        </Heading>
+                    </LinearGradient>
+                </Box>
+                </ScrollView> */}
       <Center>
         <Avatar
           my={4}
@@ -60,7 +86,7 @@ const Profile = () => {
       </VStack>
       <VStack my={10}>
         <Center>
-          <Button bgColor= { '#6167ce'} size={'lg'}>Sign out</Button>
+          <Button onPress={handleSignOut} bgColor= { '#6167ce'} size={'lg'}>Sign out</Button>
         </Center>
       </VStack>
     </NativeBaseProvider>

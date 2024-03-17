@@ -3,7 +3,7 @@ export const dummyData = [
     id: "1",
     team1: "Mumbai Indians",
     team2: "Chennai Super Kings",
-    date: "2024-03-16",
+    date: "2024-03-17",
     time: "23:45",
     venue: "Wankhede Stadium, Mumbai",
     city: "Mumbai",
